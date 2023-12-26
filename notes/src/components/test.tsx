@@ -1,36 +1,38 @@
 import React, { ChangeEvent, useState } from 'react';
-import { FormHelperText, Grid, TextField } from "@mui/material";
-
+import {FormHelperText, Grid, TextField} from "@mui/material";
+import "../css/test.css"
 const ExampleComponent = () => {
     const [text, setText] = useState("");
 
-    const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setText(event.target.value);
+    const handleTextChange = (event: ChangeEvent<HTMLDivElement>) => {
+        setText(event.currentTarget.textContent || "");
+        console.log(text)
     };
 
-    const renderTextWithStyle = () => {
-        const words = text.split(" ");
-
-        return words.map((word, index) => (
-            <span
-                key={index}
-                style={{ color: word === "Papa" ? 'red' : 'blue' }}
-            >
-                {word}{' '}
-            </span>
-        ));
-    };
+    // const renderTextWithStyle = () => {
+    //     const words = text ? text.split(" ") : []; // Add a check for undefined text
+    //
+    //     return words.map((word, index) => (
+    //         <span
+    //             key={index}
+    //             style={{ color: word === "Papa" ? 'red' : 'blue' }}
+    //         >
+    //             {word}{' '}
+    //         </span>
+    //     ));
+    // };
 
     return (
         <Grid item xs={12} md={4}>
-            <div style={{ textAlign: 'center', border: '1px solid black', minHeight: '100px',
 
-            }}
-
+            <div className="testDiv"
             >
-                <input style={{border: '0px'}}
-
-                ></input>
+                <div contentEditable='true'>Title</div>
+                <div contentEditable='true' onInput={handleTextChange}>
+                    <span style={{ color: "red" }}>sad</span>
+                    <span style={{ color: "blue" }}>sad</span>
+                </div>
+                <div>sda</div>
             </div>
         </Grid>
     );

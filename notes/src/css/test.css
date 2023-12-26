@@ -1,0 +1,13 @@
+.testDiv {
+    border: 1px solid black;
+    min-height: 100px;
+
+}
+
+.tag {
+    display: inline-block;
+    margin-right: 5px;
+    background-color: #e0e0e0;
+    padding: 2px 5px;
+    border-radius: 3px;
+}

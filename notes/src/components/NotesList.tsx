@@ -1,28 +1,29 @@
 import React from "react";
 import {Grid} from "@mui/material";
 import NoteItem from './NoteItem';
-import { useAppSelector } from "../store/hooks";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Test from "./test";
 function NotesList() {
     const notes = useAppSelector(state => state.notes.list);
+    const tags = useAppSelector(state => state.tags.tags);
+    const tagsArray =  tags.split(" ")
     return (
         <Grid container spacing={2}>
-            <Test></Test>
+
             {notes.map((note) => (
+                (note.forHelperValue.split(" ").some(tag => tagsArray.includes(tag))
+
+
+                    || tags === "") &&
                 <NoteItem
                     defaultValue={note.defaultValue}
                     forHelperValue={note.forHelperValue}
+                    key={note.textId}
                     textId={note.textId}
                     formHelperId={note.formHelperId}
                 />
-            ))}
-            {/*<NoteItem*/}
-            {/*    defaultValue={"1"}*/}
-            {/*    forHelperValue={"1"}*/}
-            {/*    textId={"1"}*/}
-            {/*    formHelperId={"1"}*/}
 
-            {/*></NoteItem>*/}
+            ))}
         </Grid>
     );
 }
